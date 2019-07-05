@@ -1,6 +1,6 @@
 1. pom.mxl 
   pom.xml 管理项目包依赖
-2. maven 项目可以用一个xml文件管理如下条目：
+2. maven 项目可以用一个xml文件（configuration.xml）管理如下条目：
   a--配置类的别名。通过标签：
   <typeAliases>
        <!-- 配置类的别名 -->   
@@ -17,3 +17,37 @@
     <mappers>   
         <mapper resource="com/ncu/models/GoodsMapper.xml" />       
     </mappers> 
+  完整配置文件如下：
+          <?xml version="1.0" encoding="UTF-8"?>   
+        <!DOCTYPE configuration   
+            PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
+            "http://mybatis.org/dtd/mybatis-3-config.dtd">   
+
+        <configuration>   
+            <settings>   
+                <!-- changes from the defaults for testing -->   
+                <setting name="cacheEnabled" value="false" />   
+                <setting name="useGeneratedKeys" value="true" />   
+                <setting name="defaultExecutorType" value="REUSE" />   
+            </settings>   
+            <typeAliases>
+               <!-- 配置类的别名 -->   
+               <typeAlias alias="Goods" type="com.ncu.models.Goods"/>   
+            </typeAliases> 
+            <environments default="development">   
+               <environment id="development">   
+                   <transactionManager type="jdbc"/>   
+                   <dataSource type="POOLED">   
+                      <property name="driver" value="com.mysql.jdbc.Driver"/>   
+                      <property name="url" value="jdbc:mysql://localhost:3306/nanjing?useUnicode=true&amp;characterEncoding=utf-8"/>   
+                      <property name="username" value="root"/>   
+                      <property name="password" value="18296967006a"/>   
+                   </dataSource> 
+               </environment>   
+            </environments>   
+           <mappers>   
+                <mapper resource="com/ncu/models/GoodsMapper.xml" />       
+            </mappers> 
+        </configuration>
+3.mapper
+  
